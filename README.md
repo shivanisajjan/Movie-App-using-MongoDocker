@@ -33,5 +33,4 @@ TrackDummyServiceImpl implementation.
 13. Create two additional properties file application-dev.properties that contains configuration for
 H2 and application-prod.properties that contains configurations for MySQL.
 =======
->>>>>>> 768cc339c83d36bff65fc24071c04af922f9fae8
-Movie app with test cases.
+Movie app with test cases
