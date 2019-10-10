@@ -16,7 +16,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/api")
-@Api(value="Movie Services", description="All Operations of Movie app")
+@Api(value = "Movie Services", description = "All Operations of Movie app")
 public class MovieController {
     @Autowired
 //    @Qualifier("MovieServiceImpl")
@@ -25,6 +25,7 @@ public class MovieController {
     public MovieController(MovieService movieService) {
         this.movieService = movieService;
     }
+
     @ApiOperation(value = "Add a Movie")
     @PostMapping("movie")
     public ResponseEntity<?> saveMovie(@ApiParam(value = "Movie object store in database table", required = true) @Valid @RequestBody Movie movie) throws MovieExistsByIdGlobalException {
@@ -42,16 +43,16 @@ public class MovieController {
             @ApiResponse(code = 404, message = "The resource you were trying to reach is not found")
     })
     @GetMapping("movie")
-    public List<Movie> getAllMovie(){
+    public List<Movie> getAllMovie() {
         return (this.movieService.getallMovies());
     }
 
     @ApiOperation(value = "Update a Movie")
     @PutMapping("movie")
-    public ResponseEntity<?> updateMovie(@ApiParam(value = "Update Movie object", required = true) @Valid @RequestBody Movie movie) throws MovieNotFoundGlobalException{
+    public ResponseEntity<?> updateMovie(@ApiParam(value = "Update Movie object", required = true) @Valid @RequestBody Movie movie) throws MovieNotFoundGlobalException {
         ResponseEntity responseEntity;
         movieService.update(movie);
-        responseEntity=new ResponseEntity<List<Movie>>(this.movieService.getallMovies(), HttpStatus.OK);
+        responseEntity = new ResponseEntity<List<Movie>>(this.movieService.getallMovies(), HttpStatus.OK);
         return responseEntity;
     }
 
@@ -61,7 +62,7 @@ public class MovieController {
     public ResponseEntity<?> deleteMovie(@ApiParam(value = "Movie Id from which Movie object will delete from database table", required = true) @PathVariable(value = "id") int id) throws MovieNotFoundGlobalException {
         ResponseEntity responseEntity;
         movieService.deleteMovie(id);
-        responseEntity=new ResponseEntity<String>("Successfully deleted", HttpStatus.OK);
+        responseEntity = new ResponseEntity<String>("Successfully deleted", HttpStatus.OK);
         return responseEntity;
     }
 
@@ -69,7 +70,7 @@ public class MovieController {
     @GetMapping("movie/title/{title}")
     public ResponseEntity<?> getMovieByTitle(@ApiParam(value = "Movie title from which movie object will retrieve", required = true) @PathVariable(value = "title") String title) throws MovieNotFoundGlobalException {
         ResponseEntity responseEntity;
-        responseEntity=new ResponseEntity<List<Movie>>(this.movieService.getMoviesbyTitle(title), HttpStatus.OK);
+        responseEntity = new ResponseEntity<List<Movie>>(this.movieService.getMoviesbyTitle(title), HttpStatus.OK);
         return responseEntity;
     }
 }

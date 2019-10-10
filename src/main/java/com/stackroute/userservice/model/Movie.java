@@ -4,12 +4,12 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import java.util.List;
+import java.lang.annotation.Documented;
 
-@Entity(name = "Movie")
+@Document
 @ApiModel(description = "All details about the Movie. ")
 @Data
 @NoArgsConstructor
@@ -21,6 +21,4 @@ public class Movie {
     private String title;
     private String overview;
     private String original_language;
-//    private List<Integer> genre_ids;
-
 }
